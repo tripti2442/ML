@@ -116,7 +116,7 @@ class Data(object):
 
         self.print_statistics()
 
-    def load_embeddings(self):
+    '''def load_embeddings(self):
         """
         Loads user/item embeddings from precomputed pickle files if they exist.
         If they don't exist, this method creates placeholders.
@@ -135,10 +135,10 @@ class Data(object):
                 print("Loaded item embeddings from pickle.")
         except FileNotFoundError:
             self.item_embeddings = np.random.rand(self.n_items, 64)  # Fallback to random embeddings
-            print("Item embeddings not found. Generated random embeddings.")
+            print("Item embeddings not found. Generated random embeddings.")'''
 
     def create_user_user_adj_matrix(self):
-        with open("user_content_features.pk", "rb") as f:
+        with open("../data/ml-1m/user_profile.pk", "rb") as f:
          user_content_embeddings = pickle.load(f)
         # Compute pairwise cosine similarity between user embeddings
         user_similarity = cosine_similarity(user_content_embeddings)
@@ -151,7 +151,7 @@ class Data(object):
         return user_user_adj
     
     def create_item_item_adj_matrix(self):
-        with open("movie_content_features.pk", "rb") as f:
+        with open("../data/ml-1m/movie_profile.pk", "rb") as f:
          item_content_embeddings = pickle.load(f)
     
         # Compute pairwise cosine similarity between item embeddings
